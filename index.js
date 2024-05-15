@@ -6,6 +6,21 @@ app.use(express.json());
 // Parse requests of content type- application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true}));
 
+const Sequelize = require('sequelize');
+
+// Connection to database
+const sequelize = new Sequelize('mysql://root:qwerty@localhost:3306/joga_sequelize');
+
+// Testing connection
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log('Connected to the database');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
+
 // simple route
 
 app.get("/", (req,res) => {
