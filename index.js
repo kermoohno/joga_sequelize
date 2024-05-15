@@ -1,10 +1,14 @@
 const express = require("express")
+const morgan = require('morgan');
 const app = express();
 
 //parse requests of content type - application/json
 app.use(express.json());
 // Parse requests of content type- application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true}));
+
+//Log HTTP request to the console
+app.use(morgan('dev'));
 
 const Sequelize = require('sequelize');
 
@@ -26,6 +30,10 @@ sequelize
 app.get("/", (req,res) => {
     res.json({message: "Welcome to sequelize application."});
 });
+
+//using routes and controllers
+const articleRouter = require('./routes/article');
+app.use('/', articleRouter);
 
 // listen requests
 app.listen(3000, () => {
