@@ -4,7 +4,12 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class Article extends Model {
     static associate(models) {
-      // Define associations here
+      this.belongsTo(models.Author, {
+        foreignKey: {
+          name: 'author_id', // naming convention typically uses snake_case
+          allowNull: false // assuming each article must have an author
+        }
+      })
     }
   }
 
@@ -37,7 +42,8 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     author_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false // assuming each article must have an author
     }
   }, {
     sequelize,
