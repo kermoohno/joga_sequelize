@@ -10,6 +10,10 @@ module.exports = (sequelize) => {
           allowNull: false // assuming each article must have an author
         }
       })
+      this.belongsToMany(models.Tags, {
+        foreignKey: 'articleId',
+        through: 'ArticleTags',
+      })
     }
   }
 

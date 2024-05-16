@@ -18,13 +18,19 @@ const getAllArticles = (req, res) => {
 
 //show article by this slug
 const getArticleBySlug = (req, res) =>{
-    models.Article.findOne({ 
+    models.Article.findOne({
         where: {
             slug: req.params.slug
         },
         include: [{
             model: models.Author
-        }],
+        },
+            {
+                model: models.Tags,
+                through: {
+                    model: models.ArticleTag
+                }
+            }],
     })
         .then(article => {
             console.log(article)
