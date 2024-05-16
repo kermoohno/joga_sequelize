@@ -9,5 +9,7 @@ router.get('/article/:slug', articleController.getArticleBySlug);
 
 // POST route for creating a new article
 router.post('/create', articleAdminController.createArticle);
+router.post('/edit/:id', articleAdminController.updateArticle)
+router.delete('delete/:id', articleAdminController.deleteArticle)
 
 module.exports = router;
