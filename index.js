@@ -31,11 +31,15 @@ app.get("/", (req,res) => {
     res.json({message: "Welcome to sequelize application."});
 });
 
-//using routes and controllers
+// Using routes and controllers
 const articleRouter = require('./routes/article');
-const authorRouter = require('./routes/authors')
-app.use('/', articleRouter);
-app.use('/author', authorRouter)
+const authorRouter = require('./routes/authors');
+
+// Mounting routers to specific base paths
+app.use('/', articleRouter); // Mounting articleRouter to the base path
+app.use('/author', authorRouter); // Mounting authorRouter to the '/author' path
+app.use('/admin/articles', articleRouter); // Mounting articleRouter to the '/admin/articles' path
+
 
 // listen requests
 app.listen(3000, () => {
