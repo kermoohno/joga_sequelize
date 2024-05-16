@@ -33,8 +33,9 @@ app.get("/", (req,res) => {
 
 //using routes and controllers
 const articleRouter = require('./routes/article');
+const authorRouter = require('./routes/authors')
 app.use('/', articleRouter);
-app.use('/', articleRouter);
+app.use('/author', authorRouter)
 
 // listen requests
 app.listen(3000, () => {

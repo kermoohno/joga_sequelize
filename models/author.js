@@ -4,15 +4,18 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Author extends Model {
     static associate(models) {
-      // define association here
+      // Define association here
+      this.hasMany(models.Article, {
+        foreignKey: 'author_id'
+      })
     }
   }
 
   Author.init({
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true, // mark 'id' as the primary key
-      autoIncrement: true // if it's an auto-incrementing primary key
+      primaryKey: true, // Mark 'id' as the primary key
+      autoIncrement: true // If it's an auto-incrementing primary key
     },
     name: {
       type: DataTypes.STRING,
